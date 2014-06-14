@@ -3,6 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="moment.min.js"></script>
   </head>
   <body>
     <script>
@@ -14,8 +15,9 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
+          var time = moment(tweet.created_at).fromNow(true);  //using moment.js lib
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.text(time + " " + '@' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($body);
           index -= 1;
         }
