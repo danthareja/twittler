@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="jquery.js"></script>
-    <script src="data_generator.js"></script>
-    <script src="moment.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/data_generator.js"></script>
+    <script src="js/moment.min.js"></script>
+    <style rel="stylesheet" src="css/style.css"></style>
   </head>
   <body>
     <script>
@@ -11,6 +12,7 @@
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
+
 
         var index = streams.home.length - 1;
         while(index >= 0){
@@ -21,6 +23,7 @@
           $tweet.appendTo($body);
           index -= 1;
         }
+
 
       });
 
