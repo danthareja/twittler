@@ -2,31 +2,13 @@
 <html>
   <head>
     <script src="js/jquery.js"></script>
-    <script src="js/data_generator.js"></script>
     <script src="js/moment.min.js"></script>
+    <script src="js/data_generator.js"></script>
+    <script src="js/twittler.js"></script>
     <style rel="stylesheet" src="css/style.css"></style>
   </head>
   <body>
-    <script>
-
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var time = moment(tweet.created_at).fromNow(true);  //using moment.js lib
-          var $tweet = $('<div></div>');
-          $tweet.text(time + " " + '@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
-
-
-      });
-
-    </script>
+    <button class="new-tweets">New Tweets</button>
+    <section class="tweets"></section>
   </body>
 </html>
