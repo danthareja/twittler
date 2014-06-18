@@ -1,3 +1,33 @@
+main {
+	max-width: 700px;
+	width: 700px;
+	margin:0 auto;
+}
+
 body {
 	background-image: url('../img/skulls.png');
+}
+
+.time {
+	color: DarkGray;
+}
+
+.tweets {
+	background: White;
+	width: 500px;
+	height: 500px;
+	padding: 15px;
+	margin: 10px 0px;
+	overflow: scroll;
+}
+
+.tweet {
+	font-family: Arial, Sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	color: Black;
+}
+
+.user {
+	color: DeepSkyBlue;
 }

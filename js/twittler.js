@@ -9,9 +9,20 @@ var showTweets = function() {
 	while(tweetCount >= tweetIndex){
 	  var tweet = streams.home[tweetIndex];
 	  var time = initialTime.from(moment(tweet.created_at));
-	  var $tweet = $('<div></div>');
-	  $tweet.text(time + " " + '@' + tweet.user + ': ' + tweet.message);
+	  var $tweet = $("<div></div>").addClass("tweet");
+	  var $time = $("<time></time>").addClass("time");
+	  var $user = $("<span></span>").addClass("user");
+	  
+	  //Set text for each variable
+	  $time.text(" - " + time);
+	  $user.text("@" + tweet.user + ": ");
+	  $tweet.text(tweet.message);
+
+	  //Concatenate tweet
 	  $tweet.prependTo($(".tweets"));
+	  $time.appendTo($tweet);
+	  $user.prependTo($tweet);
+
 	  tweetIndex++;
 	}
 }
