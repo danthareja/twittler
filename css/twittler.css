@@ -20,7 +20,12 @@ body {
 
 header {
 	margin: 0px auto;
-	width: 645px;
+	width: 645px;	
+	background: White;
+	padding: 5px;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #888888;
+
 }
 
 .time {
