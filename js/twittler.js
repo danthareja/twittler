@@ -1,10 +1,10 @@
 $(document).ready(function(){
-var initialTime = moment();
+var initialTime = moment().subtract('s', 1); //create new moment Date of now() minus one second so first tweets show up correctly.
 var $button = $('.new-tweets');
 var tweetIndex = 0; //Keeps track of how many tweets are currently in the list
 
 
-function showTweets() {
+var showTweets = function() {
 	var tweetCount = streams.home.length - 1;  //Pulls new tweet length
 	while(tweetCount >= tweetIndex){
 	  var tweet = streams.home[tweetIndex];
