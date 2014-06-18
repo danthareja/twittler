@@ -1,33 +1,53 @@
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    text-decoration: underline;
+}
+
 main {
 	max-width: 700px;
-	width: 700px;
-	margin:0 auto;
+	width: auto;
+	margin: 0px auto;
 }
 
 body {
-	background-image: url('../img/skulls.png');
+	background-image: url('../img/diamond_upholstery.png');
+}
+
+header {
+	margin: 0px auto;
+	width: 645px;
 }
 
 .time {
-	color: DarkGray;
+	color: LightGray;
 }
 
 .tweets {
-	background: White;
-	width: 500px;
 	height: 500px;
-	padding: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px 15px 15px 15px;
 	margin: 10px 0px;
 	overflow: scroll;
 }
 
 .tweet {
-	font-family: Arial, Sans-serif;
-	font-size: 12px;
-	line-height: 16px;
-	color: Black;
+	background: White;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #888888;
+	color: Gray;
+	font-family: Helvetica, Sans-serif;
+	font-size: 14px;
+	margin: 10px;
+	padding: 5px;
+	line-height: 18px;
 }
 
 .user {
-	color: DeepSkyBlue;
+	color: LightSkyBlue;
 }
