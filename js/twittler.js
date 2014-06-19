@@ -1,37 +1,78 @@
 $(document).ready(function() {
 var initialTime = moment().subtract('s', 1); //create new moment Date of now() minus one second so first tweets show up correctly.
-var tweetIndex = 0; //Keeps track of how many tweets are currently in the list
+var tweetIndex = 0; //Keeps track of how many tweets are currently in the list, when unfiltered
+var isFiltered = false;
+var intervalId;
 
-var showTweets = function() {
+var showAllTweets = function() {
 	var tweetCount = streams.home.length - 1;  //Pulls new tweet length
 	while (tweetCount >= tweetIndex) {
 	  var tweet = streams.home[tweetIndex];
-	  var time = initialTime.from(moment(tweet.created_at));
 	  var $tweet = $("<div></div>").addClass("tweet");
-	  var $time = $("<time></time>").addClass("time");
-	  var $user = $("<a href=\"#\"></a>").addClass("user");
-	  
-	  //Set text for each variable
-	  $time.text(" - " + time);
-	  $user.text("@" + tweet.user);
-	  $tweet.text(": " + tweet.message);
 
 	  //Concatenate tweet
-	  $tweet.prependTo($(".tweets"));
-	  $time.appendTo($tweet);
-	  $user.prependTo($tweet);
+	  $tweet.append('<a href="#" class="user">@' + tweet.user + '</a>: ' + tweet.message + '<time class="time"> - ' + initialTime.from(moment(tweet.created_at))+ '</time>');
+		$tweet.prependTo($(".tweets"));
 
 	  //Increment tweet counter
 	  tweetIndex++;
 	}
 };
 
-showTweets();
-setInterval(showTweets, 500);
+var showFilteredTweets = function (user) {
+	var userArray = streams.users[user];
+	var tweetCount = userArray.length - 1;
+	while (tweetCount >= tweetIndex) {
+	  var tweet = userArray[tweetIndex];
+	  var $tweet = $("<div></div>").addClass("tweet");
 
-$(".user").on("click", function(e) {
+	  //Concatenate tweet
+	  $tweet.append('<a href="#" class="user">@' + tweet.user + '</a>: ' + tweet.message + '<time class="time"> - ' + initialTime.from(moment(tweet.created_at))+ '</time>');
+		$tweet.prependTo($(".tweets"));
+
+	  //Increment tweet counter
+	  tweetIndex++;
+	}
+};
+
+var activate = function(filter) {
+	//Initialize body
+	$(".tweets").text("");
+	clearInterval(intervalId); //Remove previous id
+	tweetIndex = 0;
+
+	intervalId = isFiltered ? setInterval(function() { return showFilteredTweets(filter) }, 500) : setInterval(showAllTweets, 500);
+};
+
+showAllTweets();
+activate();
+
+$(".tweets").on("click", "a", function(e) { //Have to delegate event since users are added dynamically
 	e.preventDefault();
-	console.log(this.text);
+	var filter = this.text.slice(1); //Remove @ from username
+	isFiltered = true;
+	activate(filter);
+});
+
+$(".logo").on("click", function(e) { //Have to delegate event since users are added dynamically
+	e.preventDefault();
+	isFiltered = false;
+	activate();
 });
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
