@@ -19,13 +19,25 @@ body {
 }
 
 header {
-	margin: 0px auto;
+	margin: 0 auto;
 	width: 645px;	
 	background: White;
 	padding: 5px;
 	border-radius: 5px;
 	box-shadow: 2px 2px 2px #888888;
 
+}
+
+.send-tweet {
+	border-style: none;
+	border-radius: 5px;
+	background-color: LightSkyBlue;
+	color: White;
+	width: 60px;
+	height: 25px;
+	margin: 20px 20px 10px 20px;
+	box-shadow: 2px 2px 2px #888888;
+	cursor: pointer;
 }
 
 .show-all {
@@ -35,6 +47,7 @@ header {
 }
 
 .show-all a {
+	width: 100px;
 	text-align: center;
 	display: block;
 	margin: 0 auto;
@@ -66,6 +79,21 @@ header {
 	line-height: 18px;
 }
 
+.user-input {
+	border-radius: 5px;
+	height: 25px;
+	width: 76%;
+	margin: 20px 25px 10px 25px;
+	font-family: Helvetica, Sans-serif;
+	font-size: 14px;
+}
+
 .user {
 	color: LightSkyBlue;
 }
+
+
+
+
+
+
