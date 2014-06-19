@@ -4,26 +4,15 @@ var tweetIndex = 0; //Keeps track of how many tweets are currently in the list, 
 var isFiltered = false;
 var intervalId;
 
-var showAllTweets = function() {
-	var tweetCount = streams.home.length - 1;  //Pulls new tweet length
+var getTweets = function(user) {
+	return isFiltered ? streams.users[user] : streams.home;
+}
+
+var showTweets = function(filter) {
+	var tweetList = getTweets(filter);
+	var tweetCount = tweetList.length - 1;  //Pulls new tweet length
 	while (tweetCount >= tweetIndex) {
-	  var tweet = streams.home[tweetIndex];
-	  var $tweet = $("<div></div>").addClass("tweet");
-
-	  //Concatenate tweet
-	  $tweet.append('<a href="#" class="user">@' + tweet.user + '</a>: ' + tweet.message + '<time class="time"> - ' + initialTime.from(moment(tweet.created_at))+ '</time>');
-		$tweet.prependTo($(".tweets"));
-
-	  //Increment tweet counter
-	  tweetIndex++;
-	}
-};
-
-var showFilteredTweets = function (user) {
-	var userArray = streams.users[user];
-	var tweetCount = userArray.length - 1;
-	while (tweetCount >= tweetIndex) {
-	  var tweet = userArray[tweetIndex];
+	  var tweet = tweetList[tweetIndex];
 	  var $tweet = $("<div></div>").addClass("tweet");
 
 	  //Concatenate tweet
@@ -37,14 +26,15 @@ var showFilteredTweets = function (user) {
 
 var activate = function(filter) {
 	//Initialize body
-	$(".tweets").text("");
+	$(".tweets").text(""); //Is there a cleaner way to do this?
 	clearInterval(intervalId); //Remove previous id
 	tweetIndex = 0;
 
-	intervalId = isFiltered ? setInterval(function() { return showFilteredTweets(filter) }, 500) : setInterval(showAllTweets, 500);
+	//Repeat showTweets
+	intervalId = setInterval(function() { return showTweets(filter) }, 500);
 };
 
-showAllTweets();
+showTweets();
 activate();
 
 $(".tweets").on("click", "a", function(e) { //Have to delegate event since users are added dynamically
@@ -54,7 +44,7 @@ $(".tweets").on("click", "a", function(e) { //Have to delegate event since users
 	activate(filter);
 });
 
-$(".logo").on("click", function(e) { //Have to delegate event since users are added dynamically
+$(".logo").on("click", function(e) {
 	e.preventDefault();
 	isFiltered = false;
 	activate();
