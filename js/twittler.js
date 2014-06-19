@@ -1,39 +1,46 @@
+//TODO: FIX TIME
 $(document).ready(function() {
 var initialTime = moment().subtract('s', 1); //create new moment Date of now() minus one second so first tweets show up correctly.
 var tweetIndex = 0; //Keeps track of how many tweets are currently in the list, when unfiltered
 var isFiltered = false;
 var intervalId;
 
+var setUser = function(username) {
+  window.visitor = username; //TODO: add additional functionality later. maybe additional text box for author.
+  streams.users[username] = [];
+};
+
 var getTweets = function(user) {
-	return isFiltered ? streams.users[user] : streams.home;
+  return isFiltered ? streams.users[user] : streams.home;
 }
 
 var showTweets = function(filter) {
-	var tweetList = getTweets(filter);
-	var tweetCount = tweetList.length - 1;  //Pulls new tweet length
-	while (tweetCount >= tweetIndex) {
-	  var tweet = tweetList[tweetIndex];
-	  var $tweet = $("<div></div>").addClass("tweet");
+  var tweetList = getTweets(filter);
+  var tweetCount = tweetList.length - 1;  //Pulls new tweet length
+  while (tweetCount >= tweetIndex) {
+    var tweet = tweetList[tweetIndex];
+    var $tweet = $("<div></div>").addClass("tweet");
 
-	  //Concatenate tweet
-	  $tweet.append('<a href="#" class="user">@' + tweet.user + '</a>: ' + tweet.message + '<time class="time"> - ' + initialTime.from(moment(tweet.created_at))+ '</time>');
-		$tweet.prependTo($(".tweets"));
+    //Concatenate tweet
+    $tweet.append('<a href="#" class="user">@' + tweet.user + '</a>: ' + tweet.message + '<time class="time"> - ' + initialTime.from(moment(tweet.created_at)) + '</time>');
+    $tweet.prependTo($(".tweets"));
 
-	  //Increment tweet counter
-	  tweetIndex++;
-	}
+    //Increment tweet counter
+    tweetIndex++;
+  }
 };
 
 var activate = function(filter) {
-	//Initialize body
-	$(".tweets").text(""); //Is there a cleaner way to do this?
-	clearInterval(intervalId); //Remove previous id
-	tweetIndex = 0;
+  //Initialize body
+  $(".tweets").text(""); //Is there a cleaner way to do this?
+  clearInterval(intervalId); //Remove previous id
+  tweetIndex = 0;
 
-	//Repeat showTweets
-	intervalId = setInterval(function() { return showTweets(filter) }, 500);
+  //Repeat showTweets
+  intervalId = setInterval(function() { return showTweets(filter) }, 500);
 };
 
+setUser("dandougdot");
 showTweets();
 activate();
 
@@ -50,6 +57,13 @@ $(".show-all").on("click", "a", function(e) {
 	$(".show-all").hide();
 	isFiltered = false;
 	activate();
+});
+
+$(".send").on("click", function(e) {
+	e.preventDefault();
+  var message = $(".user-input").val();
+	console.log(message);
+	writeTweet(message);
 });
 
 });
