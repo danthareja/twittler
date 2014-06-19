@@ -40,12 +40,14 @@ activate();
 $(".tweets").on("click", "a", function(e) { //Have to delegate event since users are added dynamically
 	e.preventDefault();
 	var filter = this.text.slice(1); //Remove @ from username
+	$(".show-all").show();
 	isFiltered = true;
 	activate(filter);
 });
 
-$(".logo").on("click", function(e) {
+$(".show-all").on("click", "a", function(e) {
 	e.preventDefault();
+	$(".show-all").hide();
 	isFiltered = false;
 	activate();
 });
