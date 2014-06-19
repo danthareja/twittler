@@ -33,14 +33,13 @@ var showTweets = function(filter) {
 var activate = function(filter) {
   //Initialize body
   $(".tweets").text(""); //Is there a cleaner way to do this?
-  clearInterval(intervalId); //Remove previous id
+  clearInterval(intervalId); //Cancels previous setInterval
   tweetIndex = 0;
 
   //Repeat showTweets
   intervalId = setInterval(function() { return showTweets(filter) }, 500);
 };
 
-setUser("dandougdot");
 showTweets();
 activate();
 
@@ -61,8 +60,9 @@ $(".show-all").on("click", "a", function(e) {
 
 $(".send").on("click", function(e) {
 	e.preventDefault();
+  var username = $(".username").val() || "AverageJoe";
   var message = $(".user-input").val();
-	console.log(message);
+  setUser(username);
 	writeTweet(message);
 });
 
