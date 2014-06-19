@@ -28,16 +28,17 @@ header {
 
 }
 
-.send-tweet {
+.send {
 	border-style: none;
 	border-radius: 5px;
 	background-color: LightSkyBlue;
 	color: White;
-	width: 60px;
-	height: 25px;
-	margin: 20px 20px 10px 20px;
+	padding: 10px 20px 10px 20px;
+	margin: 20px 10px 10px 10px;
 	box-shadow: 2px 2px 2px #888888;
 	cursor: pointer;
+	font-family: Helvetica, Sans-serif;
+	font-size: 14px;
 }
 
 .show-all {
@@ -83,7 +84,7 @@ header {
 	border-radius: 5px;
 	height: 25px;
 	width: 60%;
-	margin: 20px 25px 10px 25px;
+	margin: 20px 10px 10px 10px;
 	font-family: Helvetica, Sans-serif;
 	font-size: 14px;
 }
@@ -97,7 +98,7 @@ header {
 	height: 25px;
 	width: 15%;
 	padding: 0px 5px;
-	margin: 20px 10px 10px 10px;
+	margin: 20px 5px 10px 20px;
 	font-family: Helvetica, Sans-serif;
 	font-size: 14px;
 }

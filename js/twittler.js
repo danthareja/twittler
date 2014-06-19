@@ -52,7 +52,7 @@ $(".tweets").on("click", "a", function(e) { //Have to delegate event since users
 });
 
 $(".show-all").on("click", "a", function(e) {
-	e.preventDefault();
+	e.preventDefault();  
 	$(".show-all").hide();
 	isFiltered = false;
 	activate();
