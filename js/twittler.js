@@ -63,8 +63,19 @@ $(".show-all").on("click", "a", function(e) {
 // Submit tweet on button click
 $(".send").on("click", function(e) {
 	e.preventDefault();
-  var username = $(".username").val() || "AverageJoe";
+
+  // Pulls text values
+  var username = $(".username").val();
   var message = $(".user-input").val();
+  
+  // Defines default username and removes @ from username if entered
+  if (username === undefined) {
+    username = "AverageJoe";
+  } else if (username.charAt(0) === "@") {
+    username = username.slice(1);
+  }
+  
+  // Throws alert if message is empty, else sends tweet
   if (message === "") {
     alert("You can't just chirp nothing. Chirp your mind!");
   } else {
