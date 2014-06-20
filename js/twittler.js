@@ -7,7 +7,7 @@ var intervalId;
 
 var setUser = function(username) {
   window.visitor = username; // TODO: add additional functionality later. maybe additional text box for author.
-  streams.users[username] = [];
+  if (streams.users[username] === undefined) streams.users[username] = [];
 };
 
 var getTweets = function(user) {
@@ -66,14 +66,15 @@ $(".send").on("click", function(e) {
   var username = $(".username").val() || "AverageJoe";
   var message = $(".user-input").val();
   if (message === "") {
-    alert("You have to enter something to chirp");
+    alert("You can't just chirp nothing. Chirp your mind!");
   } else {
   setUser(username);
 	writeTweet(message);
+  $(".user-input").val("");
   }
 });
 
-// Allow user to input 
+// Allow user to send tweets by pressing 'Enter'
 $(".user-input").on("keydown", function(e) {
   if (e.keyCode === 13) $(".send").click();
 });
