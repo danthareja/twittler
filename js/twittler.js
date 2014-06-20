@@ -7,7 +7,7 @@ var intervalId;
 
 var setUser = function(username) {
   window.visitor = username; // TODO: add additional functionality later. maybe additional text box for author.
-  if (streams.users[username] === undefined) streams.users[username] = [];
+  if (streams.users[username] === undefined) { streams.users[username] = [] };
 };
 
 var getTweets = function(user) {
@@ -66,10 +66,11 @@ $(".send").on("click", function(e) {
 
   // Pulls text values
   var username = $(".username").val();
+  console.log(username);
   var message = $(".user-input").val();
   
   // Defines default username and removes @ from username if entered
-  if (username === undefined) {
+  if (username === "") {
     username = "AverageJoe";
   } else if (username.charAt(0) === "@") {
     username = username.slice(1);
