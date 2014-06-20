@@ -1,4 +1,4 @@
-//TODO: FIX TIME
+//TODO: FIX TIME --> see timeago lib
 $(document).ready(function() {
 var initialTime = moment().subtract('s', 1); // create new moment Date of now() minus one second so first tweets show up correctly.
 var tweetIndex = 0; //Keeps track of how many tweets are currently in the list, when unfiltered
@@ -66,7 +66,6 @@ $(".send").on("click", function(e) {
 
   // Pulls text values
   var username = $(".username").val();
-  console.log(username);
   var message = $(".user-input").val();
   
   // Defines default username and removes @ from username if entered
