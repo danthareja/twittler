@@ -1,6 +1,6 @@
 //TODO: FIX TIME --> see timeago lib
 $(document).ready(function() {
-var initialTime = moment().subtract('s', 1); // create new moment Date of now() minus one second so first tweets show up correctly.
+// var initialTime = moment().subtract('s', 1); // create new moment Date of now() minus one second so first tweets show up correctly.
 var tweetIndex = 0; //Keeps track of how many tweets are currently in the list, when unfiltered
 var isFiltered = false;
 var intervalId;
@@ -19,10 +19,11 @@ var showTweets = function(filter) {
   var tweetCount = tweetList.length - 1;  // Pulls new tweet length
   while (tweetCount >= tweetIndex) {
     var tweet = tweetList[tweetIndex];
+    var time = jQuery.timeago(tweet.created_at);
     var $tweet = $("<div></div>").addClass("tweet");
 
     // Concatenate tweet
-    $tweet.append('<a href="#" class="user">@' + tweet.user + '</a>: ' + tweet.message + '<time class="time"> - ' + initialTime.from(moment(tweet.created_at)) + '</time>');
+    $tweet.append('<a href="#" class="user">@' + tweet.user + '</a>: ' + tweet.message + '<time class="time"> - ' + time + '</time>');
     $tweet.prependTo($(".tweets"));
 
     // Increment tweet counter
